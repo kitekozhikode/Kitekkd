@@ -114,47 +114,69 @@
     <!-- Main Content -->
     <section class="download-section">
         <div class="container">
-            <div class="download-grid">
-
-                <div class="download-card">
-                    <h3>KITE VICTERS Schedule</h3>
-                    <p>Download the latest schedule for KITE VICTERS channel programs.</p>
-                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+            <div class="download-grid" id="downloadsContainer">
+                <div style="text-align:center; width:100%; grid-column: 1/-1;" id="loadingDownloads">
+                    <i class="fas fa-spinner fa-spin"></i> Loading downloads...
                 </div>
-
-                <div class="download-card">
-                    <h3>Little KITEs Registration Form</h3>
-                    <p>Application form for Little KITEs IT Club membership.</p>
-                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
-                </div>
-
-                <div class="download-card">
-                    <h3>IT@School GNU/Linux OS</h3>
-                    <p>Latest version of the Operating System for schools.</p>
-                    <a href="#" class="download-btn"><i class="fas fa-compact-disc"></i> Download ISO</a>
-                </div>
-
-                <div class="download-card">
-                    <h3>Hi-Tech School Survey</h3>
-                    <p>Survey form for infrastructure auditing.</p>
-                    <a href="#" class="download-btn"><i class="fas fa-file-excel"></i> Download Excel</a>
-                </div>
-
-                <div class="download-card">
-                    <h3>ICT Textbook - Std 8</h3>
-                    <p>Digital version of the ICT textbook for Standard 8.</p>
-                    <a href="#" class="download-btn"><i class="fas fa-book"></i> Download PDF</a>
-                </div>
-
-                <div class="download-card">
-                    <h3>ICT Textbook - Std 9</h3>
-                    <p>Digital version of the ICT textbook for Standard 9.</p>
-                    <a href="#" class="download-btn"><i class="fas fa-book"></i> Download PDF</a>
-                </div>
-
             </div>
         </div>
     </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            const supabaseUrl = 'https://mziwlmwwjbamghcumtts.supabase.co';
+            const supabaseKey = 'sb_publishable_3F-Dytp7y7wHjCl-Z4QPow_13f5um3u';
+            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+
+            const container = document.getElementById('downloadsContainer');
+            const loader = document.getElementById('loadingDownloads');
+
+            try {
+                const { data: downloads, error } = await supabase
+                    .from('downloads')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (!downloads || downloads.length === 0) {
+                    loader.innerHTML = 'No downloads available.';
+                    return;
+                }
+
+                loader.style.display = 'none';
+
+                downloads.forEach(item => {
+                    const card = document.createElement('div');
+                    card.className = 'download-card';
+
+                    // Determine icon based on category/file type
+                    let icon = 'fa-file-alt';
+                    if (item.category === 'Software') icon = 'fa-compact-disc';
+                    if (item.category === 'Form') icon = 'fa-file-signature';
+                    if (item.category === 'Textbook') icon = 'fa-book';
+                    if (item.file_url.endsWith('.pdf')) icon = 'fa-file-pdf';
+                    if (item.file_url.endsWith('.xls') || item.file_url.endsWith('.xlsx')) icon = 'fa-file-excel';
+
+                    card.innerHTML = `
+                        <h3>${item.title}</h3>
+                        <p>${item.description || ''}</p>
+                        <div style="margin-top:10px; font-size:12px; color:#888;">
+                            <span style="background:#eef; padding:2px 6px; border-radius:4px;">${item.category}</span>
+                            <span style="float:right;">${new Date(item.created_at).toLocaleDateString()}</span>
+                        </div>
+                        <a href="${item.file_url}" target="_blank" class="download-btn"><i class="fas ${icon}"></i> Download</a>
+                    `;
+                    container.appendChild(card);
+                });
+
+            } catch (err) {
+                console.error('Error loading downloads:', err);
+                loader.innerHTML = 'Failed to load downloads.';
+                loader.style.color = 'red';
+            }
+        });
+    </script>
 
     <!-- Footer -->
     <footer>
@@ -170,11 +192,7 @@
                             Phone: 0495 2376543<br>
                             Email: dckkd@kite.kerala.gov.in</p>
                     </div>
-                    <div class="footer-col">
-                        <h4>Quick Links</h4>
-                        <ul>
-                        </ul>
-                    </div>
+
                     <div class="footer-col">
                         <h4>Follow Us</h4>
                         <div class="footer-social">

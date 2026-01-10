@@ -51,8 +51,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     if (mobileBtn && navList) {
         mobileBtn.addEventListener('click', () => {
-            navList.classList.toggle('active');
-            mobileBtn.classList.toggle('active'); // Optional: for animating the icon
+            navList.classList.toggle('show');
+            mobileBtn.classList.toggle('active');
         });
     }
     // Close menu when a link is clicked
