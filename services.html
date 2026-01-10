@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ICT Initiatives - KITE</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .page-header h2 {
+            margin: 0;
+            font-size: 32px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="kite_logo.png" alt="KITE Logo" class="kite-logo">
+                <div class="logo-text">
+                    <h1>KITE</h1>
+                    <p>Kerala Infrastructure and Technology for Education</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="services.html" class="active">Services</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn"><i class="fas fa-lock"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <section class="page-header">
+        <div class="container">
+            <h2>ICT Initiatives & Services</h2>
+            <p style="margin-top: 10px; opacity: 0.9;">Comprehensive technology solutions for education</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="services-section" style="background: white;">
+        <div class="container">
+            <div class="services-grid">
+
+                <!-- Sampoorna -->
+                <a href="https://sampoorna.kite.kerala.gov.in" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-school"></i></div>
+                    <h3>Sampoorna</h3>
+                    <p>School Management Software for student data.</p>
+                </a>
+
+                <!-- Samagra -->
+                <a href="https://samagra.kite.kerala.gov.in" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-book-reader"></i></div>
+                    <h3>Samagra</h3>
+                    <p>Resource Portal for digital content.</p>
+                </a>
+
+                <!-- Sametham -->
+                <a href="https://sametham.kite.kerala.gov.in/" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-database"></i></div>
+                    <h3>Sametham</h3>
+                    <p>School Data Bank and statistics.</p>
+                </a>
+
+                <!-- Sahitham -->
+                <a href="https://sahitham.kite.kerala.gov.in/" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-hands-helping"></i></div>
+                    <h3>Sahitham</h3>
+                    <p>Mentoring Portal for students.</p>
+                </a>
+
+                <!-- School Wiki -->
+                <a href="https://schoolwiki.in/index.php/" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fab fa-wikipedia-w"></i></div>
+                    <h3>School Wiki</h3>
+                    <p>Collaborative encyclopedia by schools.</p>
+                </a>
+
+                <!-- Samanwaya -->
+                <a href="https://samanwaya.kite.kerala.gov.in/" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-file-signature"></i></div>
+                    <h3>Samanwaya</h3>
+                    <p>Appointment Approval System.</p>
+                </a>
+
+                <!-- Little KITEs -->
+                <a href="https://littlekites.kite.kerala.gov.in" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-child"></i></div>
+                    <h3>Little KITEs</h3>
+                    <p>IT Club for school students.</p>
+                </a>
+
+                <!-- KOOL -->
+                <a href="https://kool.kite.kerala.gov.in" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-chalkboard-teacher"></i></div>
+                    <h3>KOOL</h3>
+                    <p>KITE's Open Online Learning Training Platform.</p>
+                </a>
+
+                <!-- E3 Language Lab -->
+                <a href="https://ecube.kite.kerala.gov.in/" target="_blank" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-language"></i></div>
+                    <h3>E3 Language Lab</h3>
+                    <p>English enhancement software.</p>
+                </a>
+
+                <!-- ICT Procurement -->
+                <a href="#" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-shopping-cart"></i></div>
+                    <h3>Procurement</h3>
+                    <p>ICT Procurement Guidelines for Schools.</p>
+                </a>
+
+                <!-- ICT Textbooks -->
+                <a href="#" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-book"></i></div>
+                    <h3>ICT Textbooks</h3>
+                    <p>Digital textbooks for IT education.</p>
+                </a>
+
+                <!-- Hi-Tech School -->
+                <a href="#" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-laptop-house"></i></div>
+                    <h3>Hi-Tech School</h3>
+                    <p>Modernizing classrooms with technology.</p>
+                </a>
+
+                <!-- Hi-Tech Lab -->
+                <a href="#" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-microscope"></i></div>
+                    <h3>Hi-Tech Lab</h3>
+                    <p>Labs for Primary schools.</p>
+                </a>
+
+                <!-- Cyber Safety -->
+                <a href="#" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-user-shield"></i></div>
+                    <h3>Cyber Safety</h3>
+                    <p>Initiatives for online safety.</p>
+                </a>
+
+                <!-- E-Governance -->
+                <a href="#" class="service-card">
+                    <div class="icon-circle"><i class="fas fa-globe"></i></div>
+                    <h3>E-Governance</h3>
+                    <p>Applications for educational governance.</p>
+                </a>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-row">
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <p>District Office - Kozhikode<br>
+                            KITE (IT @ School Project),<br>
+                            Near DDE Office, Mananchira<br>
+                            Kozhikode 673002<br>
+                            Phone: 0495 2376543<br>
+                            Email: dckkd@kite.kerala.gov.in</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Follow Us</h4>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 KITE (Kerala Infrastructure and Technology for Education). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

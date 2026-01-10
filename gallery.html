@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery - KITE</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .gallery-section {
+            padding: 60px 0;
+            background: #fff;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            height: 250px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-caption {
+            position: absolute;
+            bottom: -50px;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 15px;
+            transition: bottom 0.3s ease;
+            text-align: center;
+        }
+
+        .gallery-item:hover .gallery-caption {
+            bottom: 0;
+        }
+
+        .gallery-caption h3 {
+            margin: 0;
+            font-size: 18px;
+            font-weight: 600;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="kite_logo.png" alt="KITE Logo" class="kite-logo">
+                <div class="logo-text">
+                    <h1>KITE</h1>
+                    <p>Kerala Infrastructure and Technology for Education</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn"><i class="fas fa-lock"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="gallery-section">
+        <div class="container">
+            <h2 class="section-title">Our Gallery</h2>
+            <div class="gallery-grid">
+                <div style="text-align:center; width:100%; grid-column: 1/-1;" id="loadingGallery">
+                    <i class="fas fa-spinner fa-spin"></i> Loading gallery...
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox Modal -->
+    <div id="lightboxModal" class="lightbox-modal">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content" id="modalImage">
+        <div id="modalCaption"></div>
+    </div>
+
+    <script>
+        // Lightbox Logic
+        function openLightbox(src, caption) {
+            const modal = document.getElementById('lightboxModal');
+            const modalImg = document.getElementById('modalImage');
+            const captionText = document.getElementById('modalCaption');
+            modal.style.display = "block";
+            modalImg.src = src;
+            captionText.innerHTML = caption;
+        }
+
+        document.querySelector('.close-modal').onclick = function () {
+            document.getElementById('lightboxModal').style.display = "none";
+        }
+
+        window.onclick = function (event) {
+            const modal = document.getElementById('lightboxModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+
+        // Fetch Logic
+        document.addEventListener('DOMContentLoaded', async () => {
+            const supabaseUrl = 'https://mziwlmwwjbamghcumtts.supabase.co';
+            const supabaseKey = 'sb_publishable_3F-Dytp7y7wHjCl-Z4QPow_13f5um3u';
+            const supabase = window.supabase.createClient(supabaseUrl, supabaseKey);
+            const container = document.querySelector('.gallery-grid');
+            const loader = document.getElementById('loadingGallery');
+
+            try {
+                const { data: galleryItems, error } = await supabase
+                    .from('gallery')
+                    .select('*')
+                    .order('created_at', { ascending: false });
+
+                if (error) throw error;
+
+                if (!galleryItems || galleryItems.length === 0) {
+                    loader.innerHTML = 'No images found.';
+                    return;
+                }
+
+                loader.style.display = 'none';
+
+                galleryItems.forEach(item => {
+                    const itemDiv = document.createElement('div');
+                    itemDiv.className = 'gallery-item';
+                    itemDiv.innerHTML = `
+                        <img src="${item.image_url}" alt="${item.caption || 'Gallery Image'}" onclick="openLightbox(this.src, '${item.caption || ''}')">
+                        <div class="gallery-caption">
+                            <h3>${item.caption || 'KITE Event'}</h3>
+                        </div>
+                    `;
+                    container.appendChild(itemDiv);
+                });
+
+            } catch (err) {
+                console.error('Error loading gallery:', err);
+                loader.innerHTML = 'Failed to load gallery.';
+                loader.style.color = 'red';
+            }
+        });
+    </script>
+    </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-row">
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <p>District Office - Kozhikode<br>
+                            KITE (IT @ School Project),<br>
+                            Near DDE Office, Mananchira<br>
+                            Kozhikode 673002<br>
+                            Phone: 0495 2376543<br>
+                            Email: dckkd@kite.kerala.gov.in</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Follow Us</h4>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 KITE (Kerala Infrastructure and Technology for Education). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

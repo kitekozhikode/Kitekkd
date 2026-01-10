@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - KITE</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .about-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .about-content h2 {
+            color: var(--primary-blue);
+            margin-bottom: 20px;
+            font-size: 28px;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 10px;
+        }
+
+        .about-content h3 {
+            color: var(--dark-blue);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+
+        .about-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+            color: #444;
+            text-align: justify;
+        }
+
+        .about-profile {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 5px solid var(--primary-blue);
+        }
+
+        .profile-card {
+            margin-bottom: 15px;
+        }
+
+        .profile-card h4 {
+            color: var(--dark-blue);
+            margin-bottom: 5px;
+            font-size: 18px;
+        }
+
+        .profile-card p {
+            color: #666;
+            margin-bottom: 0;
+            font-size: 14px;
+        }
+
+        .objectives-list {
+            list-style-type: decimal;
+            padding-left: 20px;
+            color: #444;
+        }
+
+        .objectives-list li {
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="kite_logo.png" alt="KITE Logo" class="kite-logo">
+                <div class="logo-text">
+                    <h1>KITE</h1>
+                    <p>Kerala Infrastructure and Technology for Education</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about_us.html" class="active">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="downloads.html">Downloads</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn"><i class="fas fa-lock"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <section class="about-section">
+        <div class="container">
+            <div class="about-content">
+                <h2>About Us</h2>
+
+                <div class="about-profile">
+                    <div class="profile-card">
+                        <h4>V. Sivankutty</h4>
+                        <p>Minister for General Education</p>
+                    </div>
+                    <div class="profile-card">
+                        <h4>Dr. K Vasuki IAS</h4>
+                        <p>Chairperson, KITE</p>
+                    </div>
+                    <div class="profile-card">
+                        <h4>K. Anvar Sadath</h4>
+                        <p>Chief Executive Officer, KITE</p>
+                    </div>
+                </div>
+
+                <p>KITE (Kerala Infrastructure and Technology for Education) is a Govt of Kerala enterprise set up to
+                    foster, promote and implement modernisation of educational institutions in the State of Kerala,
+                    owned by the State or run under the aid of Government. KITE is registered as a Section 8 Company, by
+                    transforming the erstwhile IT@School Project, which revolutionised the education system of the
+                    State. An Infrastructure division has also been set-up under KITE for upgrading the infrastructural
+                    facilities in schools. The spectrum of KITE includes Information & Communication Technology,
+                    Capacity Building, Content Development, Connectivity, e-Learning, Satellite based education, Support
+                    and Maintenance mechanism, e-Governance or other related activities. Set-up as IT@School project in
+                    2001-02, KITE was transformed as a fully State Govt owned company in 2017. Throughout its two-decade
+                    long operations, KITE has implemented numerous ICT initiatives in the State such as ICT@School
+                    scheme, Hi-Tech School Project, Hi-Tech Lab project, Robotic and AI training, AI training for
+                    Public, KITE VICTERS educational channel, to name a few. Over 43 lakh students and 1.7 lakh teachers
+                    stand benefited through the initiatives of KITE.</p>
+
+                <h3>Vision</h3>
+                <p>To transform Kerala as a knowledge society by enhancing the quality of educational inputs through
+                    sustainable, inclusive, technology assisted interventions.</p>
+
+                <h3>Mission</h3>
+                <ul style="list-style-type: disc; padding-left: 20px; color: #444; margin-bottom: 20px;">
+                    <li>Upgradation of the educational institutions on par with international standards in terms of
+                        infrastructure, facilities, resources, curriculum, pedagogy etc.</li>
+                    <li>Capacity Building, Content Development, e-learning, Broadcast and other allied activities.</li>
+                    <li>Sustainable e-Governance activities including Connectivity & support.</li>
+                    <li>To provide critical inputs to the government and private sector in improving education quality
+                        through ICT.</li>
+                </ul>
+
+                <h3>Objectives of the Company</h3>
+                <ol class="objectives-list">
+                    <li>To foster, promote and implement modernization of educational institutions in the State of
+                        Kerala, owned by the state or run under the aid of Government, through providing infrastructure
+                        including Information & Communication Technology Infrastructure, Capacity Building, Content
+                        Development, Connectivity, e-learning, satellite based education, support and maintenance
+                        mechanism, E-Governance or other related activities.</li>
+                    <li>To implement up gradation of the Government sector educational institutions on par with
+                        international standards in terms of infrastructure, facilities, resources, curriculum, pedagogy
+                        etc.</li>
+                    <li>To formulate and implement projects for the use of information and communication technology as a
+                        tool for the improvement of the education quality in the State of Kerala.</li>
+                    <li>To act as advisor or consultant to the government and private sector in improving education
+                        quality through information and communication technology.</li>
+                </ol>
+
+                <hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;">
+
+                <p>Presently, KITE is governed by a five-member Board of Directors, which includes the Secretary,
+                    General Education Department (serving as the Chairperson), the CEO of KITE, Director of General
+                    Education, the Additional Secretary from the Department of IT and Additional Secretary from the
+                    Department of Finance.</p>
+
+                <p>KITE was set-up as IT@School project during 2001-02 to fuel ICT enabled education in the schools in
+                    the State. This is as per the recommendation in the IT in Education Vision Document published by the
+                    IT Task Force headed by Prof.U.R.Rao as Chairman, to implement a time-bound project for phase wise
+                    introduction of Information Technology into school curriculum.</p>
+
+                <p>In August 2017, IT@School was transformed into a Company fully owned by Government of Kerala. KITE is
+                    the first Special Purpose Vehicle (SPV) Company of the Education Department of the State and also
+                    the first SPV to get funded by Kerala Infrastructure Investment Fund Board (KIIFB), the apex body
+                    for monitoring all the projects envisaged by the Govt. The scope of KITE has also been extended to
+                    the Higher Education sector also to fuel ICT support to Arts & Science colleges, Engineering
+                    colleges and Universities.</p>
+
+                <p>The core objective of KITE was to inculcate ICT enabled activities in over 16000 schools in the
+                    State. The first breakthrough of the unique initiative came in 2005 when Information Technology was
+                    made a compulsory subject in Std 10. The launch of EDUSAT operations and broadband connectivity to
+                    schools commenced since then, the VICTERS channel under KITE was setup in 2005 and it is the first
+                    Complete Educational Channel in the Country. By effectively making use of the Centrally sponsored
+                    ‘ICT at School ‘scheme, KITE provided ICT infrastructure to 4071 schools during 2007- 2012. In 2016,
+                    the ICT intervention in Lower Primary and Upper Primary sections was reinitiated, by launching
+                    exclusive ICT Textbooks viz; Kalipetti (for Std 1 to 4) and e@Vidya (for Std 5 to 7). As many as
+                    1.70 Lakh teachers and 43 lakh students stand benefited through the ICT initiatives by KITE every
+                    year, enabling the teachers to transact their subjects more effectively using ICT tools and also
+                    equipping the students to learn various subjects with ease by using ICT.</p>
+
+                <p>KITE amply supplements the State Government’s Public Education Rejuvenation Mission (Pothu
+                    Vidyabhyasa Samrakshana Yagnam) with initiatives such as Samagra Content Portal, Sampoorna School
+                    Management software and School Wiki which connects 15,000 schools for collaborative content
+                    development process. A major highlight was the ‘Little KITEs IT Clubs’ programme under which over
+                    1.80 lakh students are being provided specialized trainings in different areas such as Animation,
+                    Cyber Safety, Hardware, Electronics, Malayalam computing, Artificial Intelligence, Robotics etc.</p>
+
+                <p>KITE has pioneered the use of Free and Open Source Software (FOSS) in Education. KITE has developed
+                    its of FOSS based Operating System which is being used in all schools. The use of FOSS not only
+                    enabled unrestricted editing and sharing of educational content among teachers and students but also
+                    effects in huge savings for the State Exchequer.</p>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-row">
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <p>District Office - Kozhikode<br>
+                            KITE (IT @ School Project),<br>
+                            Near DDE Office, Mananchira<br>
+                            Kozhikode 673002<br>
+                            Phone: 0495 2376543<br>
+                            Email: dckkd@kite.kerala.gov.in</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Follow Us</h4>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 KITE (Kerala Infrastructure and Technology for Education). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

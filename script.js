@@ -49,11 +49,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const mobileBtn = document.querySelector('.mobile-menu-btn');
     const navList = document.querySelector('.nav-list');
 
-    if (mobileBtn) {
+    if (mobileBtn && navList) {
         mobileBtn.addEventListener('click', () => {
-            navList.classList.toggle('show');
+            navList.classList.toggle('active');
+            mobileBtn.classList.toggle('active'); // Optional: for animating the icon
         });
     }
+    // Close menu when a link is clicked
+    const navLinks = document.querySelectorAll('.nav-list a');
+    navLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            if (navList && navList.classList.contains('show')) {
+                navList.classList.remove('show');
+            }
+        });
+    });
 
     // 3. News Ticker Animation (Simple Pause on Hover)
     const newsTicker = document.querySelector('.ticker-content');

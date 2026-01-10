@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Downloads - KITE</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .page-header {
+            background: var(--primary-blue);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .download-section {
+            padding: 60px 0;
+            background: white;
+        }
+
+        .download-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .download-card {
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 5px solid var(--primary-blue);
+            transition: transform 0.2s;
+        }
+
+        .download-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .download-card h3 {
+            margin-top: 0;
+            color: var(--dark-blue);
+        }
+
+        .download-card p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .download-btn {
+            display: inline-block;
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--primary-blue);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        .download-btn:hover {
+            background: var(--dark-blue);
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container header-container">
+            <div class="logo-area">
+                <img src="kite_logo.png" alt="KITE Logo" class="kite-logo">
+                <div class="logo-text">
+                    <h1>KITE</h1>
+                    <p>Kerala Infrastructure and Technology for Education</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="main-nav">
+        <div class="container">
+            <button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+            <ul class="nav-list">
+                <li><a href="index.html"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="about_us.html">About Us</a></li>
+                <li><a href="services.html">Services</a></li>
+                <li><a href="downloads.html" class="active">Downloads</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="contact.html">Contact</a></li>
+                <li><a href="login.html" class="login-btn"><i class="fas fa-lock"></i> Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Page Title -->
+    <section class="page-header">
+        <div class="container">
+            <h2>Downloads</h2>
+            <p>Important forms, documents, and software.</p>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <section class="download-section">
+        <div class="container">
+            <div class="download-grid">
+
+                <div class="download-card">
+                    <h3>KITE VICTERS Schedule</h3>
+                    <p>Download the latest schedule for KITE VICTERS channel programs.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>Little KITEs Registration Form</h3>
+                    <p>Application form for Little KITEs IT Club membership.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>IT@School GNU/Linux OS</h3>
+                    <p>Latest version of the Operating System for schools.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-compact-disc"></i> Download ISO</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>Hi-Tech School Survey</h3>
+                    <p>Survey form for infrastructure auditing.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-file-excel"></i> Download Excel</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>ICT Textbook - Std 8</h3>
+                    <p>Digital version of the ICT textbook for Standard 8.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-book"></i> Download PDF</a>
+                </div>
+
+                <div class="download-card">
+                    <h3>ICT Textbook - Std 9</h3>
+                    <p>Digital version of the ICT textbook for Standard 9.</p>
+                    <a href="#" class="download-btn"><i class="fas fa-book"></i> Download PDF</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-top">
+            <div class="container">
+                <div class="footer-row">
+                    <div class="footer-col">
+                        <h4>Contact Us</h4>
+                        <p>District Office - Kozhikode<br>
+                            KITE (IT @ School Project),<br>
+                            Near DDE Office, Mananchira<br>
+                            Kozhikode 673002<br>
+                            Phone: 0495 2376543<br>
+                            Email: dckkd@kite.kerala.gov.in</p>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Quick Links</h4>
+                        <ul>
+                        </ul>
+                    </div>
+                    <div class="footer-col">
+                        <h4>Follow Us</h4>
+                        <div class="footer-social">
+                            <a href="#"><i class="fab fa-facebook"></i></a>
+                            <a href="#"><i class="fab fa-twitter"></i></a>
+                            <a href="#"><i class="fab fa-youtube"></i></a>
+                            <a href="#"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="container">
+                <p>&copy; 2024 KITE (Kerala Infrastructure and Technology for Education). All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
