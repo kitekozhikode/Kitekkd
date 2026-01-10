@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Teacher Dashboard - KITE</title>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+    <nav class="main-nav">
+        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
+            <a href="#" style="color:white; font-weight:bold; padding:15px;">KITE Teacher Portal</a>
+            <a href="#" id="logoutBtn" style="color:white; padding:15px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+        </div>
+    </nav>
+
+    <div class="container" style="padding: 40px 0;">
+        <h1 style="color: var(--primary-blue);">Welcome, Teacher</h1>
+        <p style="color: #666; margin-bottom: 30px;">Access training modules and submit reports.</p>
+
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="icon-circle"><i class="fas fa-book-reader"></i></div>
+                <h3>My Courses</h3>
+                <p>View assigned training programs.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-circle"><i class="fas fa-clipboard-check"></i></div>
+                <h3>Attendance</h3>
+                <p>Mark student attendance.</p>
+            </div>
+            <div class="service-card">
+                <div class="icon-circle"><i class="fas fa-file-upload"></i></div>
+                <h3>Upload Resources</h3>
+                <p>Share notes and assignments.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>
