@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KITE Login</title>
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase Client -->
+    <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+    <!-- Styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .login-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 80vh;
+            background-color: #f4f4f4;
+        }
+
+        .login-box {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            border-top: 5px solid var(--primary-blue);
+        }
+
+        .login-logo {
+            width: 80px;
+            margin-bottom: 20px;
+        }
+
+        .login-title {
+            color: var(--dark-blue);
+            margin-bottom: 30px;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #666;
+            font-weight: 600;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+
+        .login-btn-submit {
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        .login-btn-submit:hover {
+            background: var(--dark-blue);
+        }
+
+        .error-msg {
+            color: var(--accent-red);
+            margin-top: 15px;
+            display: none;
+            font-size: 14px;
+        }
+
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header (Simplified) -->
+    <header class="main-header" style="padding: 10px 0; border-bottom: 1px solid #eee;">
+        <div class="container header-container" style="justify-content: center;">
+            <div class="logo-area">
+                <img src="https://kite.kerala.gov.in/KITE/images/logo.png" alt="KITE Logo" class="kite-logo"
+                    style="height: 50px;">
+                <div class="logo-text">
+                    <h1 style="font-size: 20px;">KITE</h1>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="login-container">
+        <div class="login-box">
+            <h2 class="login-title">Sign In</h2>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" class="form-control" placeholder="Enter username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" class="form-control" placeholder="Enter password" required>
+                </div>
+                <button type="submit" class="login-btn-submit">Login</button>
+                <p class="error-msg" id="errorMsg">Invalid Credentials</p>
+            </form>
+            <a href="index.html" class="back-link">&larr; Back to Home</a>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+
+</html>
