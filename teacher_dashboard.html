@@ -8,17 +8,74 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .teacher-nav {
+            background: var(--primary-blue);
+        }
+
+        .teacher-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .teacher-nav-brand {
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .teacher-logout {
+            color: white;
+            padding: 15px;
+        }
+
+        .dashboard-container {
+            padding: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 20px 15px;
+            }
+
+            .teacher-nav .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                padding-bottom: 10px;
+            }
+
+            .teacher-nav-brand {
+                font-size: 14px;
+                padding: 10px 10px 0 10px;
+            }
+
+            .teacher-logout {
+                padding: 5px 10px 10px 10px;
+                font-size: 13px;
+            }
+
+            .dashboard-container h1 {
+                font-size: 24px;
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="main-nav">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-            <a href="#" style="color:white; font-weight:bold; padding:15px;">KITE Teacher Portal</a>
-            <a href="#" id="logoutBtn" style="color:white; padding:15px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <nav class="main-nav teacher-nav">
+        <div class="container">
+            <a href="#" class="teacher-nav-brand">KITE Kozhikode Teacher Portal</a>
+            <a href="#" id="logoutBtn" class="teacher-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </nav>
 
-    <div class="container" style="padding: 40px 0;">
+    <div class="container dashboard-container">
         <h1 style="color: var(--primary-blue);">Welcome, Teacher</h1>
         <p style="color: #666; margin-bottom: 30px;">Access training modules and submit reports.</p>
 

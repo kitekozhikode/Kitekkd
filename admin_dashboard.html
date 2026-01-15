@@ -8,19 +8,142 @@
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        .admin-nav {
+            background: var(--dark-blue);
+        }
+
+        .admin-nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .admin-nav-brand {
+            color: white;
+            font-weight: bold;
+            padding: 15px;
+        }
+
+        .admin-logout {
+            color: white;
+            padding: 15px;
+        }
+
+        .dashboard-container {
+            padding: 40px 0;
+        }
+
+        .dashboard-header {
+            margin-bottom: 30px;
+        }
+
+        .dashboard-header h1 {
+            color: var(--dark-blue);
+        }
+
+        .dashboard-header p {
+            color: #666;
+        }
+
+        .admin-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-section {
+            margin-bottom: 25px;
+        }
+
+        .form-group-admin {
+            margin-bottom: 15px;
+        }
+
+        .form-group-admin label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .form-control-admin {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .btn-admin {
+            width: 100%;
+            background: var(--primary-blue);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            font-size: 16px;
+            color: var(--primary-blue);
+            cursor: pointer;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        @media (max-width: 768px) {
+            .dashboard-container {
+                padding: 20px 15px;
+            }
+
+            .admin-nav .container {
+                flex-direction: column;
+                text-align: center;
+                gap: 5px;
+                padding-bottom: 10px;
+            }
+
+            .admin-nav-brand {
+                font-size: 14px;
+                padding: 10px 10px 0 10px;
+            }
+
+            .admin-logout {
+                padding: 5px 10px 10px 10px;
+                font-size: 13px;
+            }
+
+            .dashboard-header h1 {
+                font-size: 24px;
+            }
+
+            .services-grid,
+            .dashboard-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
-    <nav class="main-nav" style="background: var(--dark-blue);">
-        <div class="container" style="display:flex; justify-content:space-between; align-items:center;">
-            <a href="#" style="color:white; font-weight:bold; padding:15px;">KITE Admin Panel</a>
-            <a href="#" id="logoutBtn" style="color:white; padding:15px;"><i class="fas fa-sign-out-alt"></i> Logout</a>
+    <nav class="main-nav admin-nav">
+        <div class="container">
+            <a href="#" class="admin-nav-brand">KITE Kozhikode Admin Panel</a>
+            <a href="#" id="logoutBtn" class="admin-logout"><i class="fas fa-sign-out-alt"></i> Logout</a>
         </div>
     </nav>
 
-    <div class="container" style="padding: 40px 0;">
-        <h1 style="color: var(--dark-blue);">Welcome, Administrator</h1>
-        <p style="color: #666; margin-bottom: 30px;">Manage system settings, users, and infrastructure.</p>
+    <div class="container dashboard-container">
+        <div class="dashboard-header">
+            <h1>Welcome, Administrator</h1>
+            <p>Manage system settings, users, and infrastructure.</p>
+        </div>
 
         <!-- DASHBOARD HOME (TILES) -->
         <div id="dashboard-home">
@@ -61,43 +184,39 @@
 
         <!-- SECTION: MANAGE USERS (Hidden by default) -->
         <div id="section-users" style="display: none;">
-            <button onclick="showSection('home')"
-                style="background:none; border:none; font-size:16px; color:var(--primary-blue); cursor:pointer; margin-bottom:20px;">
+            <button onclick="showSection('home')" class="back-btn">
                 <i class="fas fa-arrow-left"></i> Back to Dashboard
             </button>
             <h2 style="color: var(--dark-blue); margin-bottom: 20px;">User Management</h2>
 
             <div class="dashboard-grid">
                 <!-- Add Teacher Form -->
-                <div
-                    style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="admin-card">
                     <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Add New Teacher</h3>
                     <form id="addTeacherForm">
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Full Name</label>
-                            <input type="text" id="new_name" placeholder="Ex: John Doe" required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Full Name</label>
+                            <input type="text" id="new_name" class="form-control-admin" placeholder="Ex: John Doe"
+                                required>
                         </div>
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Username</label>
-                            <input type="text" id="new_user" placeholder="Ex: johndoe" required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Username</label>
+                            <input type="text" id="new_user" class="form-control-admin" placeholder="Ex: johndoe"
+                                required>
                         </div>
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Password</label>
-                            <input type="password" id="new_pass" placeholder="******" required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Password</label>
+                            <input type="password" id="new_pass" class="form-control-admin" placeholder="******"
+                                required>
                         </div>
-                        <button type="submit"
-                            style="width: 100%; background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight:bold;">
+                        <button type="submit" class="btn-admin">
                             Create Account
                         </button>
                     </form>
                 </div>
 
                 <!-- Teacher List -->
-                <div
-                    style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="admin-card">
                     <h3 style="color: var(--dark-blue); margin-bottom: 20px;">Current Teachers</h3>
                     <div class="table-responsive">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -119,53 +238,47 @@
 
         <!-- SECTION: MANAGE DOWNLOADS (Hidden by default) -->
         <div id="section-downloads" style="display: none;">
-            <button onclick="showSection('home')"
-                style="background:none; border:none; font-size:16px; color:var(--primary-blue); cursor:pointer; margin-bottom:20px;">
+            <button onclick="showSection('home')" class="back-btn">
                 <i class="fas fa-arrow-left"></i> Back to Dashboard
             </button>
             <h2 style="color: var(--dark-blue); margin-bottom: 20px;">Manage Downloads</h2>
 
             <div class="dashboard-grid">
                 <!-- Add Download Form -->
-                <div
-                    style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="admin-card">
                     <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Add New File</h3>
                     <form id="addDownloadForm">
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Title</label>
-                            <input type="text" id="dl_title" placeholder="Ex: Annual Report 2024" required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Title</label>
+                            <input type="text" id="dl_title" class="form-control-admin"
+                                placeholder="Ex: Annual Report 2024" required>
                         </div>
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Category</label>
-                            <select id="dl_category"
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Category</label>
+                            <select id="dl_category" class="form-control-admin">
                                 <option value="General">General</option>
                                 <option value="Form">Application Form</option>
                                 <option value="Software">Software/ISO</option>
                                 <option value="Textbook">Textbook</option>
                             </select>
                         </div>
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Description</label>
-                            <input type="text" id="dl_desc" placeholder="Optional description"
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Description</label>
+                            <input type="text" id="dl_desc" class="form-control-admin"
+                                placeholder="Optional description">
                         </div>
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">File Link (URL)</label>
-                            <input type="url" id="dl_url" placeholder="https://..." required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>File Link (URL)</label>
+                            <input type="url" id="dl_url" class="form-control-admin" placeholder="https://..." required>
                         </div>
-                        <button type="submit"
-                            style="width: 100%; background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight:bold;">
+                        <button type="submit" class="btn-admin">
                             Add Download
                         </button>
                     </form>
                 </div>
 
                 <!-- Existing Downloads List -->
-                <div
-                    style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="admin-card">
                     <h3 style="color: var(--dark-blue); margin-bottom: 20px;">Existing Downloads</h3>
                     <div class="table-responsive">
                         <table style="width: 100%; border-collapse: collapse;">
@@ -188,38 +301,34 @@
 
         <!-- SECTION: MANAGE GALLERY (Hidden by default) -->
         <div id="section-gallery" style="display: none;">
-            <button onclick="showSection('home')"
-                style="background:none; border:none; font-size:16px; color:var(--primary-blue); cursor:pointer; margin-bottom:20px;">
+            <button onclick="showSection('home')" class="back-btn">
                 <i class="fas fa-arrow-left"></i> Back to Dashboard
             </button>
             <h2 style="color: var(--dark-blue); margin-bottom: 20px;">Manage Gallery</h2>
 
             <div class="dashboard-grid">
                 <!-- Add Gallery Form -->
-                <div
-                    style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="admin-card">
                     <h3 style="color: var(--primary-blue); margin-bottom: 20px;">Add New Image</h3>
                     <form id="addGalleryForm">
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Image Link (URL)</label>
-                            <input type="url" id="gal_url" placeholder="https://..." required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Image Link (URL)</label>
+                            <input type="url" id="gal_url" class="form-control-admin" placeholder="https://..."
+                                required>
                         </div>
-                        <div style="margin-bottom: 15px;">
-                            <label style="display:block; margin-bottom:5px; font-weight:600;">Caption</label>
-                            <input type="text" id="gal_caption" placeholder="Ex: Tech Fest 2024" required
-                                style="width:100%; padding: 10px; border: 1px solid #ddd; border-radius: 4px;">
+                        <div class="form-group-admin">
+                            <label>Caption</label>
+                            <input type="text" id="gal_caption" class="form-control-admin"
+                                placeholder="Ex: Tech Fest 2024" required>
                         </div>
-                        <button type="submit"
-                            style="width: 100%; background: var(--primary-blue); color: white; border: none; padding: 12px; border-radius: 4px; cursor: pointer; font-weight:bold;">
+                        <button type="submit" class="btn-admin">
                             Add to Gallery
                         </button>
                     </form>
                 </div>
 
                 <!-- Existing Gallery Grid -->
-                <div
-                    style="background: white; padding: 20px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="admin-card">
                     <h3 style="color: var(--dark-blue); margin-bottom: 20px;">Recent Images</h3>
                     <div id="galleryGridAdmin"
                         style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px;">
