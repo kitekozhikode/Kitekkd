@@ -3,6 +3,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Dashboard - KITE</title>
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
@@ -62,7 +63,22 @@
 
             .services-grid {
                 grid-template-columns: 1fr !important;
+                gap: 15px;
             }
+
+            .school-card-grid {
+                grid-template-columns: 1fr !important;
+            }
+
+            .district-tile-grid {
+                grid-template-columns: 1fr !important;
+            }
+        }
+
+        .school-card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 25px;
         }
 
         .school-card {
@@ -437,6 +453,16 @@
             margin-top: 20px;
         }
 
+        @media (max-width: 600px) {
+            .district-tile-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .school-card-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         .district-tile {
             background: white;
             padding: 30px 20px;
@@ -561,8 +587,7 @@
             </div>
 
             <div id="schoolResultsContainer" style="display: none;">
-                <div id="schoolCardContainer"
-                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 25px;">
+                <div id="schoolCardContainer" class="school-card-grid">
                     <!-- Cards populated by JS -->
                 </div>
 
