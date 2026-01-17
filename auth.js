@@ -1,41 +1,67 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const loginForm = document.getElementById('loginForm');
-    const errorMsg = document.getElementById('errorMsg');
+document.addEventListener('DOMContentLoaded', async () => {
+    // --- CONFIGURATION ---
+    const SUPABASE_URL = 'https://mziwlmwwjbamghcumtts.supabase.co';
+    const SUPABASE_KEY = 'sb_publishable_3F-Dytp7y7wHjCl-Z4QPow_13f5um3u';
 
-    if (loginForm) {
-        loginForm.addEventListener('submit', (e) => {
-            e.preventDefault();
+    // Initialize Supabase
+    if (typeof supabase === 'undefined') {
+        console.error('Supabase client not loaded.');
+    } else {
+        const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
-            const username = document.getElementById('username').value.trim();
-            const password = document.getElementById('password').value.trim();
+        const loginForm = document.getElementById('loginForm');
+        const errorMsg = document.getElementById('errorMsg');
 
-            errorMsg.style.display = 'none';
+        if (loginForm) {
+            loginForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
 
-            // Mock Authentication Logic
-            if (username === 'admin' && password === 'admin123') {
-                // Admin Login
-                localStorage.setItem('userRole', 'admin');
-                window.location.href = 'admin_dashboard.html';
-            }
-            else if (username === 'teacher' && password === 'teacher123') {
-                // Teacher Login
-                localStorage.setItem('userRole', 'teacher');
-                window.location.href = 'teacher_dashboard.html';
-            }
-            else {
-                // Invalid
-                errorMsg.textContent = "Invalid Username or Password";
-                errorMsg.style.display = 'block';
-            }
-        });
+                const username = document.getElementById('username').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                errorMsg.style.display = 'none';
+
+                try {
+                    // Real Authentication Logic
+                    const { data, error } = await client
+                        .from('users')
+                        .select('*')
+                        .eq('username', username)
+                        .eq('password', password)
+                        .single();
+
+                    if (error || !data) {
+                        throw new Error("Invalid Username or Password");
+                    }
+
+                    // Store user details
+                    localStorage.setItem('userRole', data.role);
+                    localStorage.setItem('userName', data.name || data.username);
+                    localStorage.setItem('userSubDistrict', data.sub_district || '');
+
+                    // Redirect based on role
+                    if (data.role === 'admin') {
+                        window.location.href = 'admin_dashboard.html';
+                    } else if (data.role === 'teacher') {
+                        window.location.href = 'teacher_dashboard.html';
+                    } else {
+                        throw new Error("Unauthorized role");
+                    }
+                }
+                catch (err) {
+                    errorMsg.textContent = err.message;
+                    errorMsg.style.display = 'block';
+                }
+            });
+        }
     }
 
-    // Logout Functionality (for Dashboards)
+    // Logout Functionality
     const logoutBtn = document.getElementById('logoutBtn');
     if (logoutBtn) {
         logoutBtn.addEventListener('click', (e) => {
             e.preventDefault();
-            localStorage.removeItem('userRole');
+            localStorage.clear();
             window.location.href = 'login.html';
         });
     }

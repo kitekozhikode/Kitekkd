@@ -43,11 +43,11 @@ document.addEventListener('DOMContentLoaded', async () => {
     // 1. Fetch and Display Teachers
     async function fetchTeachers() {
         if (!teacherList) return;
-        teacherList.innerHTML = '<tr><td colspan="3">Loading...</td></tr>';
+        teacherList.innerHTML = '<tr><td colspan="4">Loading...</td></tr>';
         const { data, error } = await client.from('users').select('*').eq('role', 'teacher').order('id', { ascending: false });
         if (error) {
             console.error('Error:', error);
-            teacherList.innerHTML = '<tr><td colspan="3" style="color:red;">Error loading teachers</td></tr>';
+            teacherList.innerHTML = '<tr><td colspan="4" style="color:red;">Error loading teachers</td></tr>';
             return;
         }
         renderTeachers(data);
@@ -56,7 +56,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     function renderTeachers(teachers) {
         teacherList.innerHTML = '';
         if (!teachers || teachers.length === 0) {
-            teacherList.innerHTML = '<tr><td colspan="3">No teachers found.</td></tr>';
+            teacherList.innerHTML = '<tr><td colspan="4">No teachers found.</td></tr>';
             return;
         }
         teachers.forEach(teacher => {
@@ -64,9 +64,56 @@ document.addEventListener('DOMContentLoaded', async () => {
             tr.innerHTML = `
                 <td style="padding: 10px; border-bottom: 1px solid #eee;">${teacher.name || 'N/A'}</td>
                 <td style="padding: 10px; border-bottom: 1px solid #eee;">${teacher.username}</td>
+                <td style="padding: 10px; border-bottom: 1px solid #eee;">${teacher.sub_district || 'None'}</td>
                 <td style="padding: 10px; border-bottom: 1px solid #eee;"><span style="color: green;">Active</span></td>
             `;
             teacherList.appendChild(tr);
+        });
+    }
+
+    // New: Fetch unique sub-districts from school_charges
+    async function fetchSubDistricts() {
+        const select = document.getElementById('new_sub_district');
+        if (!select) return;
+
+        let allData = [];
+        let from = 0;
+        let to = 999;
+        let finished = false;
+
+        while (!finished) {
+            const { data, error } = await client
+                .from('school_charges')
+                .select('sub_district')
+                .not('sub_district', 'is', null)
+                .range(from, to);
+
+            if (error) {
+                console.error('Error fetching sub-districts:', error);
+                break;
+            }
+
+            if (data && data.length > 0) {
+                allData = allData.concat(data);
+                if (data.length < 1000) {
+                    finished = true;
+                } else {
+                    from += 1000;
+                    to += 1000;
+                }
+            } else {
+                finished = true;
+            }
+        }
+
+        // Get unique sub-districts and trim them
+        const uniqueSubDistricts = [...new Set(allData.map(item => item.sub_district.trim()))].sort();
+
+        uniqueSubDistricts.forEach(sd => {
+            const option = document.createElement('option');
+            option.value = sd;
+            option.textContent = sd;
+            select.appendChild(option);
         });
     }
 
@@ -147,9 +194,16 @@ document.addEventListener('DOMContentLoaded', async () => {
             const name = document.getElementById('new_name').value;
             const username = document.getElementById('new_user').value;
             const password = document.getElementById('new_pass').value;
+            const sub_district = document.getElementById('new_sub_district').value;
 
             try {
-                const { error } = await client.from('users').insert([{ name, username, password, role: 'teacher' }]);
+                const { error } = await client.from('users').insert([{
+                    name,
+                    username,
+                    password,
+                    role: 'teacher',
+                    sub_district: sub_district || null
+                }]);
                 if (error) throw error;
                 alert('Teacher added successfully!');
                 addTeacherForm.reset();
@@ -206,4 +260,5 @@ document.addEventListener('DOMContentLoaded', async () => {
     fetchTeachers();
     fetchDownloadsAdmin();
     fetchGalleryAdmin();
+    fetchSubDistricts();
 });

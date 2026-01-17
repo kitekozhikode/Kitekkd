@@ -4,7 +4,8 @@ CREATE TABLE IF NOT EXISTS users (
   username TEXT NOT NULL UNIQUE,
   password TEXT NOT NULL,
   name TEXT,
-  role TEXT NOT NULL DEFAULT 'teacher'
+  role TEXT NOT NULL DEFAULT 'teacher',
+  sub_district TEXT
 );
 
 -- 2. Insert the Initial Admin User
